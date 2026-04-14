@@ -17,6 +17,10 @@ pip install -e .
 mt --help
 ```
 
+### Распаковать датасет
+
+Путь: `data/m5-forecasting-accuracy.zip`
+
 ## Команды
 
 ### Аудит данных
