@@ -1,0 +1,5 @@
+record_type,name,status,wall_time_seconds
+pipeline,synthetic,completed,2.093222292009159
+stage,synthetic_dataset_generation,completed,0.8433793330041226
+stage,synthetic_demo_forecast,completed,0.0050397080049151555
+stage,synthetic_persist_artifacts,completed,1.2444708330003778

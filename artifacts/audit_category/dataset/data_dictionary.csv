@@ -1,0 +1,7 @@
+column_name,dtype,role,non_null_share,example_value,description
+category,object,static,1.0,FOODS,Категория товара в иерархии M5
+week_start,datetime64[ns],time_index,1.0,2011-01-24 00:00:00,Дата начала недели с якорем W-MON
+sales_units,int64,target,1.0,45936,Целевая переменная: суммарные недельные продажи в штуках
+series_id,object,key,1.0,FOODS,Идентификатор временного ряда на выбранном уровне агрегации
+price,float64,future_unknown,1.0,2.957807967688636,Историческая недельная цена
+promo,object,future_unknown,0.0,,Промо-признак

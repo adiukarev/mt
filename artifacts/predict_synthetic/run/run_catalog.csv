@@ -1,0 +1,6 @@
+record_type,name,status,wall_time_seconds
+pipeline,predict,completed,25.694153834003373
+stage,predict_reference_model_resolution,completed,3.583095041991328
+stage,predict_dataset_preparation,completed,0.09998820800683461
+stage,predict_forecast_generation,completed,21.010926167000434
+stage,predict_persist_artifacts,completed,0.9995183330029249

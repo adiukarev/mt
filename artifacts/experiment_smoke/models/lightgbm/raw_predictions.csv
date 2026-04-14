@@ -1,0 +1,3 @@
+model_name,model_family,series_id,category,segment_label,forecast_origin,target_date,horizon,actual,prediction
+lightgbm,ml,FOODS,FOODS,stable,2016-05-02,2016-05-09,1,225812.0,201387.76621596335
+lightgbm,ml,FOODS,FOODS,stable,2016-05-02,2016-05-16,2,202535.0,189974.35228851825

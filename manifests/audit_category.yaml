@@ -1,0 +1,8 @@
+dataset:
+  path: data/m5-forecasting-accuracy
+  aggregation_level: category
+  include_promo: false
+
+runtime:
+  output_dir: artifacts/audit_category
+  seed: 42

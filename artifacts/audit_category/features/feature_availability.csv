@@ -1,0 +1,8 @@
+feature_group,available_in_raw_data,allowed_for_default_modeling,reason
+lags,True,True,Calculated strictly from past sales history.
+rolling,True,True,Rolling windows remain leakage-safe when shifted to past weeks only.
+calendar,True,True,Calendar is known in advance and does not leak target weeks.
+category_encodings,True,True,Static hierarchy fields are known at forecast origin.
+price,True,False,"M5 содержит исторические sell_prices, однако при стандартном недельном прогнозировании нельзя по умолчанию предполагать, что будущая цена продажи известна"
+promo,False,False,Аудит M5 не предоставляет надежной таблицы с прогнозным планом промоактивностей
+external,False,False,No external source is registered with publication timestamps and stable access policy.

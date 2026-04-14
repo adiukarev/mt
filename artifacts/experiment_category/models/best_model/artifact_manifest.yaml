@@ -1,0 +1,45 @@
+model_name: mlp
+dataset_manifest:
+  path: data/m5-forecasting-accuracy
+  aggregation_level: category
+  target_name: sales_units
+  week_anchor: W-MON
+  sample_rows: null
+  series_limit: null
+  include_promo: false
+  allow_price_features: false
+feature_manifest:
+  enabled: true
+  feature_set: F4
+  lags:
+  - 1
+  - 2
+  - 3
+  - 4
+  - 8
+  - 12
+  - 13
+  - 26
+  - 52
+  rolling_windows:
+  - 4
+  - 8
+  - 13
+  - 26
+  use_calendar: true
+  use_category_encodings: true
+  use_price: false
+  use_promo: false
+  use_external: false
+feature_columns: []
+horizons:
+- 1
+- 2
+- 3
+- 4
+- 5
+- 6
+- 7
+- 8
+training_aggregation_level: category
+training_last_week_start: '2016-05-16'

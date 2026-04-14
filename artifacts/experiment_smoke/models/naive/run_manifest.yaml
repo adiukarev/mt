@@ -1,0 +1,12 @@
+aggregation_level: category
+model_name: naive
+model_family: baseline
+features:
+  enabled: true
+  feature_set: F1
+  lags:
+  - 1
+config: {}
+used_feature_columns:
+- lag_1
+seed: 42

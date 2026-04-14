@@ -1,0 +1,12 @@
+metric,value
+number_of_rows,62208
+number_of_series,96
+number_of_scenarios,3
+number_of_categories,3
+period_start,2022-01-03
+period_end,2026-02-16
+history_rows,59904
+future_rows,2304
+mean_sales_units,158.96055169753086
+zero_share,0.00945216049382716
+promo_share,0.14650848765432098

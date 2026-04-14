@@ -1,0 +1,89 @@
+dataset:
+  path: data/m5-forecasting-accuracy
+  aggregation_level: category
+  allow_price_features: false
+
+backtest:
+  horizon_min: 1
+  horizon_max: 8
+  min_train_weeks: 64
+  step_weeks: 1
+  max_windows:
+  mode: direct
+
+runtime:
+  artifacts_dir: artifacts/experiment_category
+  seed: 42
+  bootstrap_samples: 150
+
+models:
+  - name: naive
+    features:
+      enabled: true
+      feature_set: F1
+      lags: [ 1 ]
+  - name: seasonal_naive
+    features:
+      enabled: true
+      feature_set: F1
+      lags: [ 1, 52 ]
+  - name: ets
+    config:
+      trend: add
+      seasonal: null
+  - name: ridge
+    features:
+      enabled: true
+    config:
+      alpha: 1.0
+  - name: lightgbm
+    features:
+      enabled: true
+    config:
+      n_estimators: 400
+      learning_rate: 0.03
+      max_depth: 6
+      num_leaves: 31
+      min_child_samples: 20
+      subsample: 0.9
+      colsample_bytree: 0.9
+  - name: catboost
+    features:
+      enabled: true
+    config:
+      depth: 6
+      iterations: 400
+      learning_rate: 0.03
+      l2_leaf_reg: 3.0
+  - name: mlp
+    features:
+      enabled: true
+      feature_set: F4
+    config:
+      history_length: 39
+      hidden_size: 64
+      n_blocks: 2
+      n_layers: 2
+      epochs: 160
+      batch_size: 16
+      learning_rate: 0.0007
+      weight_decay: 0.0001
+      device: cpu
+      scaler_type: robust
+      max_steps: 160
+  - name: nbeats
+    features:
+      enabled: true
+      feature_set: F4
+    config:
+      history_length: 39
+      hidden_size: 64
+      n_blocks: 3
+      n_layers: 2
+      epochs: 160
+      batch_size: 16
+      learning_rate: 0.0007
+      weight_decay: 0.0001
+      device: cpu
+      scaler_type: robust
+      max_steps: 160

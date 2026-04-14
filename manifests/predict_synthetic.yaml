@@ -1,0 +1,18 @@
+input:
+  dataset_path: artifacts/synthetic/dataset/synthetic.csv
+
+model_source:
+  best_model_dir: artifacts/experiment_category/models/best_model
+
+forecast:
+  horizon_weeks: 8
+
+visualization:
+  overlay_series_id: synthetic_series_001
+  plot_history_weeks: 104
+  zoom_history_weeks: 32
+  annotate_forecast_values: true
+
+runtime:
+  output_dir: artifacts/predict_synthetic
+  seed: 42

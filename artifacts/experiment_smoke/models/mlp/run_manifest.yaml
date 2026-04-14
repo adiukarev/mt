@@ -1,0 +1,20 @@
+aggregation_level: category
+model_name: mlp
+model_family: dl
+features:
+  enabled: true
+  feature_set: F4_smoke
+config:
+  history_length: 8
+  hidden_size: 16
+  n_blocks: 2
+  n_layers: 2
+  epochs: 40
+  batch_size: 4
+  learning_rate: 0.003
+  weight_decay: 0.0001
+  device: cpu
+  scaler_type: robust
+  max_steps: 40
+used_feature_columns: []
+seed: 42

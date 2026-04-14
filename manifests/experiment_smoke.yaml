@@ -1,0 +1,105 @@
+dataset:
+  path: data/m5-forecasting-accuracy
+  aggregation_level: category
+  series_limit: 1
+  allow_price_features: false
+
+backtest:
+  horizon_min: 1
+  horizon_max: 2
+  min_train_weeks: 60
+  step_weeks: 4
+  max_windows: 1
+  mode: direct
+
+runtime:
+  artifacts_dir: artifacts/experiment_smoke
+  seed: 42
+  bootstrap_samples: 30
+
+models:
+  - name: naive
+    features:
+      enabled: true
+      feature_set: F1
+      lags: [ 1 ]
+  - name: seasonal_naive
+    features:
+      enabled: true
+      feature_set: F1
+      lags: [ 1, 52 ]
+  - name: ets
+    config:
+      trend: add
+      seasonal: null
+  - name: ridge
+    features:
+      enabled: true
+      feature_set: F4_smoke
+      lags: [ 1, 2, 4, 8, 13, 26, 52 ]
+      rolling_windows: [ 4 ]
+      use_category_encodings: false
+    config:
+      alpha: 1.0
+  - name: lightgbm
+    features:
+      enabled: true
+      feature_set: F4_smoke
+      lags: [ 1, 2, 4, 8, 13, 26, 52 ]
+      rolling_windows: [ 4 ]
+      use_category_encodings: false
+    config:
+      n_estimators: 200
+      learning_rate: 0.05
+      max_depth: 5
+      num_leaves: 31
+      min_child_samples: 10
+      subsample: 0.9
+      colsample_bytree: 0.9
+  - name: catboost
+    features:
+      enabled: true
+      feature_set: F4_smoke
+      lags: [ 1, 2, 4, 8, 13, 26, 52 ]
+      rolling_windows: [ 4 ]
+      use_category_encodings: false
+    config:
+      depth: 5
+      iterations: 200
+      learning_rate: 0.05
+      l2_leaf_reg: 3.0
+  - name: mlp
+    features:
+      enabled: true
+      feature_set: F4_smoke
+    config:
+      history_length: 8
+      hidden_size: 16
+      n_blocks: 2
+      n_layers: 2
+      epochs: 40
+      batch_size: 4
+      learning_rate: 0.003
+      weight_decay: 0.0001
+      device: cpu
+      scaler_type: robust
+      max_steps: 40
+  - name: nbeats
+    features:
+      enabled: true
+      feature_set: F4_smoke
+      lags: [ 1, 2, 4, 8, 13, 26, 52 ]
+      rolling_windows: [ 4 ]
+      use_category_encodings: false
+    config:
+      history_length: 8
+      hidden_size: 16
+      n_blocks: 2
+      n_layers: 2
+      epochs: 40
+      batch_size: 4
+      learning_rate: 0.003
+      weight_decay: 0.0001
+      device: cpu
+      scaler_type: robust
+      max_steps: 40

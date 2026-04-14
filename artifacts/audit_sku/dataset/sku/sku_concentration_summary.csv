@@ -1,0 +1,11 @@
+metric,value
+sku_count,3049.0
+effective_sku_count_inverse_hhi,588.4149472543625
+hhi_sales_concentration,0.00169948096095478
+gini_sales_concentration,0.6281248379387845
+top_1_sales_share,0.01520930818338913
+top_5_sales_share,0.05115881706224167
+top_10_sales_share,0.07741239869791004
+top_20_sales_share,0.11784392865361278
+top_50_sales_share,0.2013114314569958
+top_100_sales_share,0.2963430264714752

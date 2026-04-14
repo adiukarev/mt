@@ -1,0 +1,18 @@
+column_name,dtype,role,non_null_share,example_value
+scenario_name,object,scenario,1.0,stable
+series_id,object,key,1.0,synthetic_series_001
+category,object,static,1.0,foods
+week_start,datetime64[ns],time_index,1.0,2022-01-03 00:00:00
+week_of_year,int64,derived,1.0,1
+time_index,int64,time_index,1.0,0
+is_history,bool,split_flag,1.0,True
+sales_units,int64,target,1.0,191
+expected_sales_units,float64,generator_internal,1.0,145.961
+promo_planned,int64,known_in_advance,1.0,0
+discount_depth,float64,known_in_advance,1.0,0.0
+price,float64,known_in_advance,1.0,7.5231
+known_in_advance_price,bool,derived,1.0,True
+known_in_advance_promo,bool,derived,1.0,True
+covariate_price_class,object,derived,1.0,known_in_advance
+covariate_promo_class,object,derived,1.0,known_in_advance
+target_name,object,derived,1.0,sales_units

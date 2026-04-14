@@ -1,0 +1,10 @@
+aggregation_level: category
+model_name: ets
+model_family: statistical
+features:
+  enabled: false
+config:
+  trend: add
+  seasonal: null
+used_feature_columns: []
+seed: 42

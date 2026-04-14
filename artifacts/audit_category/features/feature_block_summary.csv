@@ -1,0 +1,7 @@
+group,feature_count,enabled_count,enabled_for_default_modeling,covariate_classes,availability_at_forecast_time,example_features,mechanism_note
+calendar,5,5,True,known_in_advance,True,"week_of_year, month, quarter, year, week_in_month","Кодирует детерминированное сезонное положение в retail-календаре, которое известно заранее до даты прогноза."
+categorical,3,2,False,known_in_advance,True,"category_code, segment_code, sku_code","Переносит устойчивые различия между рядами, например профиль категории или сегмент спроса."
+external,1,0,False,future_unknown,False,external_signal,"Может объяснять внешние сдвиги спроса только тогда, когда документированы лаг публикации и доступность в будущее."
+lags,9,9,True,observed,True,"lag_1, lag_2, lag_3, lag_4, lag_8","Улавливает инерцию, локальную устойчивость и повторяющуюся недельную или годовую память по уже наблюденным продажам."
+price_promo,2,0,False,future_unknown,False,"price, promo","Описывает управляемые драйверы спроса, но прямое использование запрещено, пока доступность на дату прогноза не доказана отдельно."
+rolling,28,28,True,observed,True,"rolling_4_mean, rolling_4_median, rolling_4_std, rolling_4_min, rolling_4_max","Приближает локальный уровень, волатильность и краткосрочный тренд, используя только прошлую историю продаж."

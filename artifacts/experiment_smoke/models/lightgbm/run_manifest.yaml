@@ -1,0 +1,46 @@
+aggregation_level: category
+model_name: lightgbm
+model_family: ml
+features:
+  enabled: true
+  feature_set: F4_smoke
+  lags:
+  - 1
+  - 2
+  - 4
+  - 8
+  - 13
+  - 26
+  - 52
+  rolling_windows:
+  - 4
+  use_category_encodings: false
+config:
+  n_estimators: 200
+  learning_rate: 0.05
+  max_depth: 5
+  num_leaves: 31
+  min_child_samples: 10
+  subsample: 0.9
+  colsample_bytree: 0.9
+used_feature_columns:
+- lag_1
+- lag_2
+- lag_4
+- lag_8
+- lag_13
+- lag_26
+- lag_52
+- rolling_4_mean
+- rolling_4_median
+- rolling_4_std
+- rolling_4_min
+- rolling_4_max
+- rolling_4_ratio_to_rolling_mean
+- rolling_4_recent_trend_delta
+- week_of_year
+- month
+- quarter
+- year
+- week_in_month
+seed: 42

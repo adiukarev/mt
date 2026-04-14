@@ -1,0 +1,12 @@
+{
+  "aggregation_level": "category",
+  "target_name": "sales_units",
+  "metadata": {
+    "source_frequency": "daily",
+    "weekly_rule": "W-MON",
+    "promo_available": false,
+    "stockout_risk": "high",
+    "series_limit": null,
+    "series_count_after_sampling": 3
+  }
+}

@@ -1,0 +1,9 @@
+model_name,model_family,feature_count,used_feature_columns
+naive,baseline,1,lag_1
+seasonal_naive,baseline,2,lag_1 | lag_52
+ets,statistical,0,
+ridge,ml,19,lag_1 | lag_2 | lag_4 | lag_8 | lag_13 | lag_26 | lag_52 | rolling_4_mean | rolling_4_median | rolling_4_std | rolling_4_min | rolling_4_max | rolling_4_ratio_to_rolling_mean | rolling_4_recent_trend_delta | week_of_year | month | quarter | year | week_in_month
+lightgbm,ml,19,lag_1 | lag_2 | lag_4 | lag_8 | lag_13 | lag_26 | lag_52 | rolling_4_mean | rolling_4_median | rolling_4_std | rolling_4_min | rolling_4_max | rolling_4_ratio_to_rolling_mean | rolling_4_recent_trend_delta | week_of_year | month | quarter | year | week_in_month
+catboost,ml,19,lag_1 | lag_2 | lag_4 | lag_8 | lag_13 | lag_26 | lag_52 | rolling_4_mean | rolling_4_median | rolling_4_std | rolling_4_min | rolling_4_max | rolling_4_ratio_to_rolling_mean | rolling_4_recent_trend_delta | week_of_year | month | quarter | year | week_in_month
+mlp,dl,0,
+nbeats,dl,0,

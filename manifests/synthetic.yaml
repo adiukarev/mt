@@ -1,0 +1,100 @@
+calendar:
+  start_date: "2022-01-03"
+  history_weeks: 208
+  horizon_weeks: 8
+  week_anchor: "W-MON"
+
+series:
+  series_count: 96
+  categories:
+    - foods
+    - household
+    - hobbies
+  base_level_min: 70
+  base_level_max: 220
+  trend_slope_min: -0.30
+  trend_slope_max: 0.55
+  yearly_amplitude_min: 0.06
+  yearly_amplitude_max: 0.20
+  monthly_amplitude_min: 0.02
+  monthly_amplitude_max: 0.07
+
+promo:
+  enabled: true
+  probability: 0.14
+  lift_min: 0.08
+  lift_max: 0.30
+
+price:
+  enabled: true
+  base_price_min: 4.0
+  base_price_max: 16.0
+  discount_probability: 0.12
+  discount_depth_min: 0.03
+  discount_depth_max: 0.18
+  elasticity_min: -1.2
+  elasticity_max: -0.4
+
+noise:
+  dispersion_alpha: 0.25
+  outlier_probability: 0.02
+  outlier_multiplier_min: 1.4
+  outlier_multiplier_max: 2.2
+  stockout_probability: 0.01
+  stockout_depth_min: 0.40
+  stockout_depth_max: 0.90
+
+demo_forecast:
+  enabled: true
+  model_name: seasonal_naive
+  overlay_series_id: synthetic_series_001
+  plot_history_weeks: 52
+
+scenarios:
+  - name: stable
+    description: Smooth low-noise baseline
+    level_scale: 1.00
+    trend_scale: 0.80
+    yearly_amplitude_scale: 0.80
+    monthly_amplitude_scale: 0.70
+    promo_probability_scale: 0.60
+    promo_lift_scale: 0.80
+    discount_probability_scale: 0.80
+    price_elasticity_scale: 0.80
+    noise_scale: 0.65
+    outlier_probability_scale: 0.40
+    stockout_probability_scale: 0.40
+    zero_inflation_probability: 0.00
+  - name: seasonal_promo
+    description: Strong seasonality and promo-driven demand
+    level_scale: 1.05
+    trend_scale: 1.00
+    yearly_amplitude_scale: 1.45
+    monthly_amplitude_scale: 1.20
+    promo_probability_scale: 1.50
+    promo_lift_scale: 1.30
+    discount_probability_scale: 1.20
+    price_elasticity_scale: 1.10
+    noise_scale: 0.95
+    outlier_probability_scale: 0.80
+    stockout_probability_scale: 0.80
+    zero_inflation_probability: 0.00
+  - name: noisy_stockout
+    description: Volatile demand with outliers and stockout-like drops
+    level_scale: 0.95
+    trend_scale: 1.10
+    yearly_amplitude_scale: 1.00
+    monthly_amplitude_scale: 1.10
+    promo_probability_scale: 1.00
+    promo_lift_scale: 1.00
+    discount_probability_scale: 1.00
+    price_elasticity_scale: 1.00
+    noise_scale: 1.60
+    outlier_probability_scale: 2.20
+    stockout_probability_scale: 3.00
+    zero_inflation_probability: 0.03
+
+runtime:
+  output_dir: artifacts/synthetic
+  dataset_name: synthetic
+  seed: 42

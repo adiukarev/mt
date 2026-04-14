@@ -1,0 +1,93 @@
+calendar:
+  start_date: '2022-01-03'
+  history_weeks: 208
+  horizon_weeks: 8
+  week_anchor: W-MON
+series:
+  series_count: 96
+  categories:
+  - foods
+  - household
+  - hobbies
+  base_level_min: 70
+  base_level_max: 220
+  trend_slope_min: -0.3
+  trend_slope_max: 0.55
+  yearly_amplitude_min: 0.06
+  yearly_amplitude_max: 0.2
+  monthly_amplitude_min: 0.02
+  monthly_amplitude_max: 0.07
+promo:
+  enabled: true
+  probability: 0.14
+  lift_min: 0.08
+  lift_max: 0.3
+price:
+  enabled: true
+  base_price_min: 4.0
+  base_price_max: 16.0
+  discount_probability: 0.12
+  discount_depth_min: 0.03
+  discount_depth_max: 0.18
+  elasticity_min: -1.2
+  elasticity_max: -0.4
+noise:
+  dispersion_alpha: 0.25
+  outlier_probability: 0.02
+  outlier_multiplier_min: 1.4
+  outlier_multiplier_max: 2.2
+  stockout_probability: 0.01
+  stockout_depth_min: 0.4
+  stockout_depth_max: 0.9
+demo_forecast:
+  enabled: true
+  model_name: seasonal_naive
+  overlay_series_id: synthetic_series_001
+  plot_history_weeks: 52
+scenarios:
+- name: stable
+  description: Smooth low-noise baseline
+  level_scale: 1.0
+  trend_scale: 0.8
+  yearly_amplitude_scale: 0.8
+  monthly_amplitude_scale: 0.7
+  promo_probability_scale: 0.6
+  promo_lift_scale: 0.8
+  discount_probability_scale: 0.8
+  price_elasticity_scale: 0.8
+  noise_scale: 0.65
+  outlier_probability_scale: 0.4
+  stockout_probability_scale: 0.4
+  zero_inflation_probability: 0.0
+- name: seasonal_promo
+  description: Strong seasonality and promo-driven demand
+  level_scale: 1.05
+  trend_scale: 1.0
+  yearly_amplitude_scale: 1.45
+  monthly_amplitude_scale: 1.2
+  promo_probability_scale: 1.5
+  promo_lift_scale: 1.3
+  discount_probability_scale: 1.2
+  price_elasticity_scale: 1.1
+  noise_scale: 0.95
+  outlier_probability_scale: 0.8
+  stockout_probability_scale: 0.8
+  zero_inflation_probability: 0.0
+- name: noisy_stockout
+  description: Volatile demand with outliers and stockout-like drops
+  level_scale: 0.95
+  trend_scale: 1.1
+  yearly_amplitude_scale: 1.0
+  monthly_amplitude_scale: 1.1
+  promo_probability_scale: 1.0
+  promo_lift_scale: 1.0
+  discount_probability_scale: 1.0
+  price_elasticity_scale: 1.0
+  noise_scale: 1.6
+  outlier_probability_scale: 2.2
+  stockout_probability_scale: 3.0
+  zero_inflation_probability: 0.03
+runtime:
+  output_dir: artifacts/synthetic
+  dataset_name: synthetic
+  seed: 42

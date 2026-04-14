@@ -1,0 +1,14 @@
+aggregation_level: category
+model_name: seasonal_naive
+model_family: baseline
+features:
+  enabled: true
+  feature_set: F1
+  lags:
+  - 1
+  - 52
+config: {}
+used_feature_columns:
+- lag_1
+- lag_52
+seed: 42
