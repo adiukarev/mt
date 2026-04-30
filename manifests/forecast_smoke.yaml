@@ -1,0 +1,21 @@
+dataset:
+  kind: m5
+  path: data/m5-forecasting-accuracy
+  aggregation_level: category
+  target_name: sales_units
+  week_anchor: W-MON
+
+model:
+  local:
+    model_dir: artifacts/m5/experiment_smoke/model
+  registry:
+    selection:
+      dag_id: experiment_smoke_pipeline
+      alias: dev
+
+forecast:
+  horizon_weeks: 2
+
+runtime:
+  artifacts_dir: artifacts/m5/forecast_smoke
+  seed: 42

@@ -1,0 +1,7 @@
+column_name,dtype,non_null_count,non_null_share,missing_count,sample_value
+series_id,object,2420,1.0,0,1047679
+category,object,2420,1.0,0,BEVERAGES
+sku,object,2420,1.0,0,1047679
+week_start,datetime64[ns],2420,1.0,0,2012-12-31 00:00:00
+sales_units,float64,2420,1.0,0,16314.0
+days_in_week,int64,2420,1.0,0,6

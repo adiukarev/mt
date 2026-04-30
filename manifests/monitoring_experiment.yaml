@@ -1,0 +1,49 @@
+dataset:
+  kind: synthetic
+  path: data/synthetic
+  aggregation_level: sku
+  target_name: sales_units
+  week_anchor: W-MON
+  series_limit:
+  series_allowlist:
+
+source:
+  source_type: synthetic
+  source_config:
+    applied_batch_count: 4
+
+backtest:
+  horizon_start: 1
+  horizon_end: 2
+  min_train_weeks: 12
+  step_weeks: 1
+  shared_origin_grid: true
+  bootstrap_samples: 10
+
+runtime:
+  artifacts_dir: artifacts/monitoring_experiment_refresh
+  seed: 42
+
+models:
+  - name: naive
+    enabled: true
+    features:
+      enabled: true
+      feature_set: F1
+      lags: [1]
+      rolling_windows: []
+      use_calendar: false
+      use_category_encodings: false
+    config: {}
+
+  - name: ridge
+    enabled: true
+    features:
+      enabled: true
+      feature_set: F4_smoke
+      lags: [1, 2, 4]
+      rolling_windows: [2, 4]
+      use_calendar: true
+      use_category_encodings: false
+    config:
+      alpha: 1.0

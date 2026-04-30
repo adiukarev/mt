@@ -1,0 +1,156 @@
+dataset:
+  kind: favorita
+  path: data/favorita-grocery-sales-forecasting
+  aggregation_level: sku
+  target_name: sales_units
+  week_anchor: W-MON
+  series_limit: 1
+  series_allowlist:
+
+backtest:
+  horizon_start: 1  # Начальный горизонт прогноза: оцениваем уже первую неделю вперед.
+  horizon_end: 8  # Конечный горизонт прогноза: покрываем весь рабочий weekly range до 8 недель.
+  min_train_weeks: 104  # Два годовых цикла сохраняют lag_52, но не усиливают старые SKU regime shifts.
+  step_weeks: 1  # Шаг между forecast origin: берем каждую неделю, чтобы не терять промежуточные окна.
+
+runtime:
+  artifacts_dir: artifacts/favorita/experiment_sku_single
+  seed: 42
+
+models:
+  - name: naive
+    enabled: true
+    features:
+      enabled: true
+      feature_set: F1
+      lags: [1]
+      rolling_windows: []
+      use_calendar: false
+      use_category_encodings: false
+    config:
+      {}
+
+  - name: seasonal_naive
+    enabled: true
+    features:
+      enabled: true
+      feature_set: F1
+      lags: [1, 52]
+      rolling_windows: []
+      use_calendar: false
+      use_category_encodings: false
+    config:
+      {}
+
+  - name: ets
+    enabled: true
+    features:
+      enabled: false
+      feature_set: F4
+      lags: [1, 4, 7, 13, 26, 28, 52]
+      rolling_windows: [4, 7, 13, 26, 28, 52]
+      use_calendar: true
+      use_category_encodings: false
+    config:
+      trend: add
+      seasonal: add
+      seasonal_periods: 52
+      initialization_method: estimated
+
+  - name: ridge
+    enabled: true
+    features:
+      enabled: true
+      feature_set: F4
+      lags: [1, 4, 7, 13, 26, 28, 52]
+      rolling_windows: [4, 7, 13, 26, 28, 52]
+      use_calendar: true
+      use_category_encodings: true
+    config:
+      alpha: 8.0
+
+  - name: lightgbm
+    enabled: true
+    features:
+      enabled: true
+      feature_set: F4
+      lags: [1, 4, 7, 13, 26, 28, 52]
+      rolling_windows: [4, 7, 13, 26, 28, 52]
+      use_calendar: true
+      use_category_encodings: true
+    config:
+      n_estimators: 700
+      learning_rate: 0.015
+      max_depth: 4
+      num_leaves: 15
+      min_child_samples: 10
+      subsample: 0.85
+      colsample_bytree: 0.85
+      objective: regression_l1
+      objective_alpha: 0.9
+      tweedie_variance_power: 1.3
+
+  - name: catboost
+    enabled: true
+    features:
+      enabled: true
+      feature_set: F4
+      lags: [1, 4, 7, 13, 26, 28, 52]
+      rolling_windows: [4, 7, 13, 26, 28, 52]
+      use_calendar: true
+      use_category_encodings: true
+    config:
+      learning_rate: 0.025
+      depth: 4
+      iterations: 700
+      l2_leaf_reg: 6.0
+      loss_function: MAE
+
+  - name: mlp
+    enabled: true
+    features:
+      enabled: true
+      feature_set: F4
+      lags: [1, 4, 7, 13, 26, 28, 52]
+      rolling_windows: [4, 7, 13, 26, 28, 52]
+      use_calendar: true
+      use_category_encodings: true
+    config:
+      learning_rate: 0.0005
+      loss_function: MQLoss
+      history_length: 52
+      hidden_size: 48
+      n_layers: 2
+      batch_size: 8
+      weight_decay: 0.001
+      device: cpu
+      scaler_type: robust
+      max_steps: 300
+      early_stop_patience_steps: -1
+      val_check_steps: 40
+
+  - name: nbeats
+    enabled: true
+    features:
+      enabled: true
+      feature_set: F4
+      lags: [1, 4, 7, 13, 26, 28, 52]
+      rolling_windows: [4, 7, 13, 26, 28, 52]
+      use_calendar: true
+      use_category_encodings: true
+    config:
+      learning_rate: 0.0005
+      loss_function: MQLoss
+      history_length: 52
+      hidden_size: 48
+      n_blocks: 3
+      n_layers: 2
+      batch_size: 8
+      weight_decay: 0.001
+      device: cpu
+      scaler_type: robust
+      max_steps: 340
+      early_stop_patience_steps: -1
+      val_check_steps: 40
+      dropout: 0.0
+      activation: ReLU

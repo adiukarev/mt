@@ -1,0 +1,11 @@
+dataset_kind: favorita
+aggregation_level: sku
+series_count: 10
+row_count: 2420
+segment_count: 2
+run_key: audit-20260429T134045Z
+pipeline_type: audit
+tracking_backend: noop
+tracking_run_id: null
+tracking_namespace: null
+execution_mode: local

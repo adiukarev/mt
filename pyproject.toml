@@ -1,0 +1,38 @@
+[build-system]
+requires = ["setuptools>=68", "wheel"]
+build-backend = "setuptools.build_meta"
+
+[project]
+name = "mt"
+version = "0.1.0"
+requires-python = ">=3.13,<3.14"
+dependencies = [
+	"pandas",
+	"numpy",
+	"scipy",
+	"scikit-learn",
+	"statsmodels",
+	"matplotlib",
+	"pyyaml",
+	"openpyxl",
+	"lightgbm",
+	"catboost",
+	"torch",
+	"neuralforecast",
+	"gdown",
+	"psycopg2-binary",
+	"structlog",
+	"mlflow",
+	"apache-airflow",
+	"jupyter",
+	"ipykernel",
+]
+
+[tool.setuptools]
+package-dir = { "" = "src" }
+
+[tool.setuptools.packages.find]
+where = ["src"]
+
+[project.scripts]
+mt = "mt.cli.main:main"

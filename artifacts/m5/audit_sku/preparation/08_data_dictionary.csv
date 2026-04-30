@@ -1,0 +1,7 @@
+column_name,dtype,role,non_null_share,example_value,description
+sku,object,derived,1.0,FOODS_3_080,
+category,object,static,1.0,FOODS,"Категория или surrogate business grouping, сформированный адаптером датасета"
+week_start,datetime64[ns],time_index,1.0,2011-01-24 00:00:00,Дата начала недели с якорем W-MON
+sales_units,int64,target,1.0,355,"Канонический downstream target. Для некоторых датасетов это может быть инженерный proxy, зафиксированный в metadata."
+days_in_week,int64,derived,1.0,2,
+series_id,object,key,1.0,FOODS_3_080,Идентификатор временного ряда на выбранном уровне агрегации

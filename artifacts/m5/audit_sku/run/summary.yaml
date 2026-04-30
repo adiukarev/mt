@@ -1,0 +1,11 @@
+dataset_kind: m5
+aggregation_level: sku
+series_count: 10
+row_count: 2780
+segment_count: 1
+run_key: audit-20260429T134028Z
+pipeline_type: audit
+tracking_backend: noop
+tracking_run_id: null
+tracking_namespace: null
+execution_mode: local

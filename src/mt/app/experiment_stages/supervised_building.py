@@ -1,0 +1,5 @@
+from mt.app.base_stages.supervised_building import BaseSupervisedBuildingPipelineStage
+
+
+class ExperimentSupervisedBuildingPipelineStage(BaseSupervisedBuildingPipelineStage):
+	pass

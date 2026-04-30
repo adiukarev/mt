@@ -1,0 +1,30 @@
+dataset:
+  kind: synthetic
+  path: data/synthetic
+  aggregation_level: sku
+  target_name: sales_units
+  week_anchor: W-MON
+  series_limit: 16
+  series_allowlist:
+
+model:
+  local:
+    model_dir: artifacts/monitoring_experiment_refresh/model
+  registry:
+    selection:
+      dag_id: experiment_pipeline
+      alias: dev
+
+drift:
+  reference_weeks: 8
+  max_distribution_shift_score: 0.20
+  max_zero_share_delta: 0.05
+  max_row_count_delta: 0.05
+
+quality_gate:
+  max_recent_wape: 0.22
+  max_alert_score: 2.0
+
+runtime:
+  artifacts_dir: artifacts/monitoring
+  seed: 42

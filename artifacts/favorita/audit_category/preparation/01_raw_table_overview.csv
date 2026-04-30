@@ -1,0 +1,4 @@
+table_name,row_count,column_count,columns
+items,4100,4,item_nbr | family | class | perishable
+stores,54,5,store_nbr | city | state | type | cluster
+test,0,0,

@@ -1,0 +1,154 @@
+dataset:
+  kind: m5
+  path: data/m5-forecasting-accuracy
+  aggregation_level: category
+  target_name: sales_units
+  week_anchor: W-MON
+  series_limit: 1
+  series_allowlist:
+
+backtest:
+  horizon_start: 1
+  horizon_end: 2
+  min_train_weeks: 104
+  step_weeks: 80
+
+runtime:
+  artifacts_dir: artifacts/m5/experiment_smoke
+  seed: 42
+
+models:
+  - name: naive
+    enabled: true
+    features:
+      enabled: true
+      feature_set: F1
+      lags: [1]
+      rolling_windows: []
+      use_calendar: false
+      use_category_encodings: false
+    config: {}
+
+  - name: seasonal_naive
+    enabled: true
+    features:
+      enabled: true
+      feature_set: F1
+      lags: [1, 52]
+      rolling_windows: []
+      use_calendar: false
+      use_category_encodings: false
+    config: {}
+
+  - name: ets
+    enabled: true
+    features:
+      enabled: false
+      feature_set: F4
+      lags: [1, 4, 13, 52]
+      rolling_windows: [4, 13, 52]
+      use_calendar: true
+      use_category_encodings: true
+    config:
+      trend: add
+      seasonal: add
+      seasonal_periods: 52
+      initialization_method: estimated
+
+  - name: ridge
+    enabled: true
+    features:
+      enabled: true
+      feature_set: F4
+      lags: [1, 4, 13, 52]
+      rolling_windows: [4, 13, 52]
+      use_calendar: true
+      use_category_encodings: true
+    config:
+      alpha: 3.0
+
+  - name: lightgbm
+    enabled: true
+    features:
+      enabled: true
+      feature_set: F4
+      lags: [1, 4, 13, 52]
+      rolling_windows: [4, 13, 52]
+      use_calendar: true
+      use_category_encodings: true
+    config:
+      n_estimators: 10
+      learning_rate: 0.05
+      max_depth: 3
+      num_leaves: 8
+      min_child_samples: 4
+      subsample: 0.85
+      colsample_bytree: 0.85
+      objective: regression
+      objective_alpha: 0.9
+      tweedie_variance_power: 1.5
+
+  - name: catboost
+    enabled: true
+    features:
+      enabled: true
+      feature_set: F4
+      lags: [1, 4, 13, 52]
+      rolling_windows: [4, 13, 52]
+      use_calendar: true
+      use_category_encodings: true
+    config:
+      learning_rate: 0.05
+      depth: 3
+      iterations: 10
+      l2_leaf_reg: 5.0
+      loss_function: RMSE
+
+  - name: mlp
+    enabled: true
+    features:
+      enabled: true
+      feature_set: F4
+      lags: [1, 4, 13, 52]
+      rolling_windows: [4, 13, 52]
+      use_calendar: true
+      use_category_encodings: true
+    config:
+      learning_rate: 0.001
+      loss_function: MQLoss
+      history_length: 16
+      hidden_size: 8
+      n_layers: 1
+      batch_size: 8
+      weight_decay: 0.0001
+      device: cpu
+      scaler_type: robust
+      max_steps: 1
+      early_stop_patience_steps: -1
+      val_check_steps: 1
+
+  - name: nbeats
+    enabled: true
+    features:
+      enabled: true
+      feature_set: F4
+      lags: [1, 4, 13, 52]
+      rolling_windows: [4, 13, 52]
+      use_calendar: true
+      use_category_encodings: true
+    config:
+      learning_rate: 0.001
+      loss_function: MQLoss
+      history_length: 16
+      hidden_size: 8
+      n_blocks: 1
+      n_layers: 1
+      batch_size: 8
+      weight_decay: 0.0001
+      device: cpu
+      scaler_type: robust
+      max_steps: 1
+      early_stop_patience_steps: -1
+      val_check_steps: 1
+      dropout: 0.0
+      activation: ReLU

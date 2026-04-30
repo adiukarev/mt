@@ -1,0 +1,5 @@
+from mt.app.base_stages.raw_dataset_loading import BaseRawDatasetLoadingPipelineStage
+
+
+class AuditRawDatasetLoadingPipelineStage(BaseRawDatasetLoadingPipelineStage):
+	pass

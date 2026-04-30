@@ -1,0 +1,7 @@
+column_name,dtype,role,non_null_share,example_value,description
+series_id,object,key,1.0,1047679,Идентификатор временного ряда на выбранном уровне агрегации
+category,object,static,1.0,BEVERAGES,"Категория или surrogate business grouping, сформированный адаптером датасета"
+sku,object,derived,1.0,1047679,
+week_start,datetime64[ns],time_index,1.0,2012-12-31 00:00:00,Дата начала недели с якорем W-MON
+sales_units,float64,target,1.0,16314.0,"Канонический downstream target. Для некоторых датасетов это может быть инженерный proxy, зафиксированный в metadata."
+days_in_week,int64,derived,1.0,6,

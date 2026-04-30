@@ -1,0 +1,5 @@
+from mt.app.base_stages.feature_engineering import BaseFeatureEngineeringPipelineStage
+
+
+class ExperimentFeatureEngineeringPipelineStage(BaseFeatureEngineeringPipelineStage):
+	pass

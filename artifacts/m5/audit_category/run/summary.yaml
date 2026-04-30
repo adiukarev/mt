@@ -1,0 +1,11 @@
+dataset_kind: m5
+aggregation_level: category
+series_count: 3
+row_count: 834
+segment_count: 1
+run_key: audit-20260429T134023Z
+pipeline_type: audit
+tracking_backend: noop
+tracking_run_id: null
+tracking_namespace: null
+execution_mode: local

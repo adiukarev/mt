@@ -1,0 +1,159 @@
+dataset:
+  kind: m5
+  path: data/m5-forecasting-accuracy
+  aggregation_level: category
+  target_name: sales_units
+  week_anchor: W-MON
+  series_limit:
+  series_allowlist:
+    - FOODS
+    - HOBBIES
+    - HOUSEHOLD
+
+backtest:
+  horizon_start: 1  # Начальный горизонт прогноза: оцениваем уже первую неделю вперед.
+  horizon_end: 8  # Конечный горизонт прогноза: покрываем весь рабочий weekly range до 8 недель.
+  min_train_weeks: 104  # Минимальная train-история: 104 недели дают два годовых цикла для сезонных и history-based моделей.
+  step_weeks: 1  # Шаг между forecast origin: берем каждую неделю, чтобы не терять промежуточные окна.
+
+runtime:
+  artifacts_dir: artifacts/m5/experiment_category_curated
+  seed: 42
+
+models:
+  - name: naive
+    enabled: true
+    features:
+      enabled: true
+      feature_set: F1
+      lags: [ 1 ]
+      rolling_windows: [ ]
+      use_calendar: false
+      use_category_encodings: false
+    config:
+      { }
+
+  - name: seasonal_naive
+    enabled: true
+    features:
+      enabled: true
+      feature_set: F1
+      lags: [ 1, 52 ]
+      rolling_windows: [ ]
+      use_calendar: false
+      use_category_encodings: false
+    config:
+      { }
+
+  - name: ets
+    enabled: true
+    features:
+      enabled: false
+      feature_set: F4
+      lags: [ 1, 4, 7, 13, 26, 28, 52 ]
+      rolling_windows: [ 4, 7, 13, 26, 28, 52 ]
+      use_calendar: true
+      use_category_encodings: true
+    config:
+      trend: add
+      seasonal: add
+      seasonal_periods: 52
+      initialization_method: estimated
+
+  - name: ridge
+    enabled: true
+    features:
+      enabled: true
+      feature_set: F4
+      lags: [ 1, 4, 7, 13, 26, 28, 52 ]
+      rolling_windows: [ 4, 7, 13, 26, 28, 52 ]
+      use_calendar: true
+      use_category_encodings: true
+    config:
+      alpha: 3.0
+
+  - name: lightgbm
+    enabled: true
+    features:
+      enabled: true
+      feature_set: F4
+      lags: [ 1, 4, 7, 13, 26, 28, 52 ]
+      rolling_windows: [ 4, 7, 13, 26, 28, 52 ]
+      use_calendar: true
+      use_category_encodings: true
+    config:
+      n_estimators: 500
+      learning_rate: 0.03
+      max_depth: 5
+      num_leaves: 24
+      min_child_samples: 16
+      subsample: 0.85
+      colsample_bytree: 0.85
+      objective: regression
+      objective_alpha: 0.9
+      tweedie_variance_power: 1.5
+
+  - name: catboost
+    enabled: true
+    features:
+      enabled: true
+      feature_set: F4
+      lags: [ 1, 4, 7, 13, 26, 28, 52 ]
+      rolling_windows: [ 4, 7, 13, 26, 28, 52 ]
+      use_calendar: true
+      use_category_encodings: true
+    config:
+      learning_rate: 0.03
+      depth: 5
+      iterations: 500
+      l2_leaf_reg: 5.0
+      loss_function: RMSE
+
+  - name: mlp
+    enabled: true
+    features:
+      enabled: true
+      feature_set: F4
+      lags: [ 1, 4, 7, 13, 26, 28, 52 ]
+      rolling_windows: [ 4, 7, 13, 26, 28, 52 ]
+      use_calendar: true
+      use_category_encodings: true
+    config:
+      learning_rate: 0.001
+      loss_function: MQLoss
+      history_length: 52
+      hidden_size: 96
+      n_layers: 3
+      batch_size: 16
+      weight_decay: 0.0001
+      device: cpu
+      scaler_type: robust
+      max_steps: 320
+      early_stop_patience_steps: -1
+      val_check_steps: 80
+
+  - name: nbeats
+    enabled: true
+    features:
+      enabled: true
+      feature_set: F4
+      lags: [ 1, 4, 7, 13, 26, 28, 52 ]
+      rolling_windows: [ 4, 7, 13, 26, 28, 52 ]
+      use_calendar: true
+      use_category_encodings: true
+    config:
+      learning_rate: 0.001
+      loss_function: MQLoss
+      history_length: 52
+      hidden_size: 96
+      n_blocks: 4
+      n_layers: 3
+      batch_size: 16
+      weight_decay: 0.0001
+      device: cpu
+      scaler_type: robust
+      max_steps: 320
+      early_stop_patience_steps: -1
+      val_check_steps: 80
+      dropout: 0.0
+      activation: ReLU

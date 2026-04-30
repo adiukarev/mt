@@ -1,0 +1,5 @@
+from mt.app.base_stages.dataset_segmentation import BaseDatasetSegmentationPipelineStage
+
+
+class AuditDatasetSegmentationPipelineStage(BaseDatasetSegmentationPipelineStage):
+	pass

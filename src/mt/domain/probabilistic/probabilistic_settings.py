@@ -1,0 +1,2 @@
+DEFAULT_PROBABILISTIC_QUANTILES: tuple[float, ...] = (0.025, 0.10, 0.50, 0.90, 0.975)
+DEFAULT_INTERVAL_LEVELS: tuple[float, ...] = (0.80, 0.95)

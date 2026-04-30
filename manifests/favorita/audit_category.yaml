@@ -1,0 +1,12 @@
+dataset:
+  kind: favorita
+  path: data/favorita-grocery-sales-forecasting
+  aggregation_level: category
+  target_name: sales_units
+  week_anchor: W-MON
+  series_limit: 10
+  series_allowlist:
+
+runtime:
+  artifacts_dir: artifacts/favorita/audit_category
+  seed: 42

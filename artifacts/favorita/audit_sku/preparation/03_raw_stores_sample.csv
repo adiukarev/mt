@@ -1,0 +1,21 @@
+store_nbr,city,state,type,cluster
+1,Quito,Pichincha,D,13
+2,Quito,Pichincha,D,13
+3,Quito,Pichincha,D,8
+4,Quito,Pichincha,D,9
+5,Santo Domingo,Santo Domingo de los Tsachilas,D,4
+6,Quito,Pichincha,D,13
+7,Quito,Pichincha,D,8
+8,Quito,Pichincha,D,8
+9,Quito,Pichincha,B,6
+10,Quito,Pichincha,C,15
+11,Cayambe,Pichincha,B,6
+12,Latacunga,Cotopaxi,C,15
+13,Latacunga,Cotopaxi,C,15
+14,Riobamba,Chimborazo,C,7
+15,Ibarra,Imbabura,C,15
+16,Santo Domingo,Santo Domingo de los Tsachilas,C,3
+17,Quito,Pichincha,C,12
+18,Quito,Pichincha,B,16
+19,Guaranda,Bolivar,C,15
+20,Quito,Pichincha,B,6

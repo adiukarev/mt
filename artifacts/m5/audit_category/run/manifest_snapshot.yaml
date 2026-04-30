@@ -1,0 +1,14 @@
+dataset:
+  kind: m5
+  path: data/m5-forecasting-accuracy
+  aggregation_level: category
+  target_name: sales_units
+  week_anchor: W-MON
+  series_limit: null
+  series_allowlist:
+  - FOODS
+  - HOBBIES
+  - HOUSEHOLD
+runtime:
+  artifacts_dir: artifacts/m5/audit_category
+  seed: 42

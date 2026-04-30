@@ -1,0 +1,5 @@
+from mt.app.base_stages.dataset_preparation import BaseDatasetPreparationPipelineStage
+
+
+class ExperimentDatasetPreparationPipelineStage(BaseDatasetPreparationPipelineStage):
+	pass

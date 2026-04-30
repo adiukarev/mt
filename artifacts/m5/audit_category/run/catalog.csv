@@ -1,0 +1,6 @@
+record_type,name,status,wall_time_seconds
+pipeline,audit,completed,16.219712124999205
+stage,audit_raw_dataset_loading,completed,1.9086607080025715
+stage,audit_dataset_preparation,completed,0.45199329200113425
+stage,audit_dataset_segmentation,completed,0.0013845829962519929
+stage,audit_artifact_persistence,completed,13.855976874998305

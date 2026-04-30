@@ -1,0 +1,6 @@
+column_name,dtype,non_null_count,non_null_share,missing_count,sample_value
+category,object,834,1.0,0,FOODS
+week_start,datetime64[ns],834,1.0,0,2011-01-24 00:00:00
+sales_units,int64,834,1.0,0,45936
+days_in_week,int64,834,1.0,0,2
+series_id,object,834,1.0,0,FOODS

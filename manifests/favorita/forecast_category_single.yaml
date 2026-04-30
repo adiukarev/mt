@@ -1,0 +1,21 @@
+dataset:
+  kind: favorita
+  path: data/favorita-grocery-sales-forecasting
+  aggregation_level: category
+  target_name: sales_units
+  week_anchor: W-MON
+
+model:
+  local:
+    model_dir: artifacts/favorita/experiment_category_single/model
+  registry:
+    selection:
+      dag_id: experiment_favorita_category_single_pipeline
+      alias: dev
+
+forecast:
+  horizon_weeks: 8
+
+runtime:
+  artifacts_dir: artifacts/favorita/forecast_category_single
+  seed: 42

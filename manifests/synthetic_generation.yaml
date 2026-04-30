@@ -1,0 +1,75 @@
+calendar:
+  start_date: "2020-01-06"
+  history_weeks: 260
+  horizon_weeks: 8
+  week_anchor: "W-MON"
+
+series:
+  series_count: 144
+  categories:
+    - foods
+    - household
+    - hobbies
+    - personal_care
+  base_level_min: 35
+  base_level_max: 320
+  trend_slope_min: -0.22
+  trend_slope_max: 0.38
+  yearly_amplitude_min: 0.08
+  yearly_amplitude_max: 0.24
+  monthly_amplitude_min: 0.03
+  monthly_amplitude_max: 0.10
+
+noise:
+  dispersion_alpha: 0.18
+  outlier_probability: 0.025
+  outlier_multiplier_min: 1.5
+  outlier_multiplier_max: 2.8
+  stockout_probability: 0.02
+  stockout_depth_min: 0.25
+  stockout_depth_max: 0.92
+
+scenarios:
+  - name: stable_retail
+    description: Stable weekly retail batch expected to pass monitoring when recent model error is within threshold
+    level_scale: 1.00
+    trend_scale: 1.00
+    yearly_amplitude_scale: 1.00
+    monthly_amplitude_scale: 1.00
+    noise_scale: 1.00
+    outlier_probability_scale: 1.00
+    stockout_probability_scale: 1.00
+    zero_inflation_probability: 0.015
+    recent_level_scale: 1.00
+    recent_noise_scale: 1.00
+    recent_outlier_probability_scale: 1.00
+    recent_stockout_probability_scale: 1.00
+    recent_zero_inflation_probability: 0.00
+
+  - name: degraded_retail
+    description: Degraded weekly retail batch expected to fail monitoring through demand drop and zero inflation
+    level_scale: 1.00
+    trend_scale: 1.00
+    yearly_amplitude_scale: 1.00
+    monthly_amplitude_scale: 1.00
+    noise_scale: 1.00
+    outlier_probability_scale: 1.00
+    stockout_probability_scale: 1.00
+    zero_inflation_probability: 0.015
+    recent_level_scale: 0.35
+    recent_noise_scale: 2.75
+    recent_outlier_probability_scale: 3.00
+    recent_stockout_probability_scale: 5.00
+    recent_zero_inflation_probability: 0.12
+
+output:
+  dataset_dir: data/synthetic
+  write_mode: append
+  scenario_policy: cycle
+  scenario_cycle:
+    - stable_retail
+    - degraded_retail
+
+runtime:
+  artifacts_dir: artifacts/synthetic_generation
+  seed: 42

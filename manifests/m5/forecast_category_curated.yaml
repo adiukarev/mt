@@ -1,0 +1,21 @@
+dataset:
+  kind: m5
+  path: data/m5-forecasting-accuracy
+  aggregation_level: category
+  target_name: sales_units
+  week_anchor: W-MON
+
+model:
+  local:
+    model_dir: artifacts/m5/experiment_category_curated/model
+  registry:
+    selection:
+      dag_id: experiment_m5_category_curated_pipeline
+      alias: dev
+
+forecast:
+  horizon_weeks: 8
+
+runtime:
+  artifacts_dir: artifacts/m5/forecast_category_curated
+  seed: 42
